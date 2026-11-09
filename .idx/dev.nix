@@ -7,6 +7,7 @@
   # Use https://search.nixos.org/packages to find packages
   packages = [
     pkgs.dotnet-sdk_10
+    pkgs.sqlite
   ];
 
   idx = {
