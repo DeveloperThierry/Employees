@@ -58,5 +58,16 @@ namespace app.Controllers
             return Ok(employee);
         }
 
+        [HttpDelete("{id:guid}")]
+        public IActionResult RemoveEmployee(Guid id)
+        {
+            var employee = context.Employees.Find(id);
+            if(employee is null) return NotFound();
+            context.Employees.Remove(employee);
+            context.SaveChanges();
+            return Ok();
+
+        }
+
     }
 }
