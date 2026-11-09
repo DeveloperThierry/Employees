@@ -45,5 +45,18 @@ namespace app.Controllers
             context.SaveChanges();
             return Ok(employeeEntity);
         }
+
+        [HttpPut("{id:guid}")]
+        public IActionResult UpdateEmployee(Guid id, UpdateEmployeeDto updateEmployeeDto)
+        {
+            var employee = context.Employees.Find(id);
+            if(employee is null) return NotFound();
+            employee.Name = updateEmployeeDto.Name;
+            employee.Email = updateEmployeeDto.Email;
+            employee.Phone = updateEmployeeDto.Phone;
+            context.SaveChanges();
+            return Ok(employee);
+        }
+
     }
 }
