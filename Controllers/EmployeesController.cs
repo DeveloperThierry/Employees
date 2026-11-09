@@ -22,6 +22,15 @@ namespace app.Controllers
             return Ok(allEmployees);
         }
 
+        [HttpGet("{id:guid}")]
+        public IActionResult GetEmployeeById(Guid id)
+        {
+            var employee = context.Employees.Find(id);
+            if(employee is null) return NotFound();
+            return Ok(employee);
+        }
+
+
         [HttpPost]
         public IActionResult AddEmployee(AddEmployeeDto addEmployeeDto)
         {
