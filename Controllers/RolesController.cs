@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using app.Data;
 using app.Models;
+using app.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -29,6 +30,19 @@ namespace app.Controllers
             return Ok(role);
         }
 
+        [HttpPost]
+        public IActionResult AddRole(AddRoleDto roleDto)
+        {
+            var roleEntity = new Role()
+            {
+                Title=roleDto.Title,
+                Description=roleDto.Description
+            };
+            context.Roles.Add(roleEntity);
+            context.SaveChanges();
+            return Ok(roleEntity);
+        }
+
         [HttpPut("{id:guid}")]
         public IActionResult UpdateRole(Guid id, UpdateRoleDto roleDto)
         {
@@ -45,7 +59,8 @@ namespace app.Controllers
         {
             var role = context.Roles.Find(id);
             if(role is null) return NotFound();
-            context.Remove(role);
+            context.Roles.Remove(role);
+            context.SaveChanges();
             return Ok();
         }
     }
