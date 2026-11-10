@@ -15,5 +15,8 @@ namespace app.Models.Entities
 
         public required Guid DepartmentId {get; set;}
         public Department Department {get; set;}
+
+        public required Guid RoleId {get; set;}
+        public Role Role {get; set;}
     }
 }

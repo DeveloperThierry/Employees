@@ -20,7 +20,7 @@ namespace app.Controllers
        [HttpGet]
        public IActionResult GetAllEmployees()
         {
-            var allEmployees = context.Employees.Include(e => e.Department).ToList();
+            var allEmployees = context.Employees.Include(e => e.Department).Include(e => e.Role).ToList();
             return Ok(allEmployees);
         }
 
@@ -44,7 +44,8 @@ namespace app.Controllers
                 Email=addEmployeeDto.Email,
                 Phone=addEmployeeDto.Phone,
                 Salary=addEmployeeDto.Salary,
-                DepartmentId=addEmployeeDto.DepartmentId
+                DepartmentId=addEmployeeDto.DepartmentId,
+                RoleId=addEmployeeDto.RoleId
                 
             };
             employeeEntity.Department = department;
@@ -60,11 +61,15 @@ namespace app.Controllers
             if(employee is null) return NotFound();
             var department = context.Departments.Find(updateEmployeeDto.DepartmentId);
             if(department is null) return NotFound("Department not found");
+            var role = context.Roles.Find(updateEmployeeDto.RoleId);
+            if(role is null) return NotFound("Role not found");
             employee.Name = updateEmployeeDto.Name;
             employee.Email = updateEmployeeDto.Email;
             employee.Phone = updateEmployeeDto.Phone;
             employee.DepartmentId = updateEmployeeDto.DepartmentId;
             employee.Department = department;
+            employee.RoleId = updateEmployeeDto.RoleId;
+            employee.Role = role;
             context.SaveChanges();
             return Ok(employee);
         }

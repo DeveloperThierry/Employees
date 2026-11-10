@@ -11,6 +11,7 @@ namespace app.Models
         public required string Email {get; set;}
         public string? Phone {get; set;}
         public Guid DepartmentId {get; set;}
+        public Guid RoleId {get; set;}
 
     }
 }

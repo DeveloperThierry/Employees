@@ -12,5 +12,6 @@ namespace app.Models
         public string? Phone {get; set;}
         public decimal Salary {get; set;}
         public Guid DepartmentId {get; set;}
+        public Guid RoleId {get; set;}
     }
 }

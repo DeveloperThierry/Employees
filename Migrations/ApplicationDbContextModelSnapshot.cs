@@ -52,6 +52,9 @@ namespace app.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("TEXT");
 
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("TEXT");
+
                     b.Property<decimal>("Salary")
                         .HasColumnType("TEXT");
 
@@ -59,7 +62,27 @@ namespace app.Migrations
 
                     b.HasIndex("DepartmentId");
 
+                    b.HasIndex("RoleId");
+
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("app.Models.Entities.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("app.Models.Entities.Employee", b =>
@@ -70,7 +93,15 @@ namespace app.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("app.Models.Entities.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Department");
+
+                    b.Navigation("Role");
                 });
 #pragma warning restore 612, 618
         }
