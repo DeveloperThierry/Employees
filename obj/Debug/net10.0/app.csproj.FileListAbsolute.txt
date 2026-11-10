@@ -147,3 +147,6 @@
 /home/user/app/bin/Debug/net10.0/runtimes/win-arm64/native/e_sqlite3.dll
 /home/user/app/bin/Debug/net10.0/runtimes/win-x64/native/e_sqlite3.dll
 /home/user/app/bin/Debug/net10.0/runtimes/win-x86/native/e_sqlite3.dll
+/home/user/app/bin/Debug/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/home/user/app/bin/Debug/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll
+/home/user/app/obj/Debug/net10.0/app.sourcelink.json

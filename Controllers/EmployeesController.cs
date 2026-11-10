@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using app.Data;
 using app.Models;
 using app.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
